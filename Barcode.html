@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Reader</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #3494E6, #EC6EAD);
+            background-size: cover;
+        }
+
+        .container {
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #71B7E6, #9B59B6);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #3494E6, #EC6EAD);
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            color: #333;
+        }
+
+        .valid {
+            background: linear-gradient(135deg, #52E5B8, #009FB7);
+        }
+
+        .invalid {
+            background: linear-gradient(135deg, #FF9A8B, #FF6A88);
+        }
+
+        .logout-button {
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #E74C3C, #C0392B);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background: linear-gradient(135deg, #C0392B, #E74C3C);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <i class="fas fa-barcode"></i>
+        <h2>Barcode Reader</h2>
+        <label for="barcodeInput">Enter Barcode:</label>
+        <input type="text" id="barcodeInput" size="15">
+        <button onclick="verifyBarcode()">Verify</button>
+
+        <div id="message" class="message"></div>
+
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        // JavaScript code
+        var barcodeDatabase = new Set(["123456789", "987654321", "555555555"]);
+
+        function verifyBarcode() {
+            var barcodeInput = document.getElementById("barcodeInput").value;
+            var isBarcodeValid = barcodeDatabase.has(barcodeInput);
+
+            var messageElement = document.getElementById("message");
+            messageElement.textContent = isBarcodeValid ? "Barcode is valid." : "Invalid barcode or not found in the database.";
+            messageElement.className = isBarcodeValid ? "message valid" : "message invalid";
+        }
+
+        function logout() {
+            // Redirect to the logout page
+            window.location.href = "logout.html";
+        }
+    </script>
+</body>
+</html>
